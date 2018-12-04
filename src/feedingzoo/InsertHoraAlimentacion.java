@@ -46,18 +46,12 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        txtIDAlimentacion = new javax.swing.JTextField();
-        txtHoraAlimentacion = new javax.swing.JTextField();
-        txtFechaAlimentacion = new javax.swing.JTextField();
-        txtRacion = new javax.swing.JTextField();
+        txtIDAnimalAlimentado = new javax.swing.JTextField();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         nombre_animal = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        txtIDStaff = new javax.swing.JTextField();
+        txtHoraAlimentacion = new javax.swing.JTextField();
 
         textNum1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,36 +79,13 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
 
         jMenuItem1.setText("jMenuItem1");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("fecha alimentacion");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("racion");
-
-        txtIDAlimentacion.setColumns(42);
-        txtIDAlimentacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtIDAlimentacion.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtIDAnimalAlimentado.setColumns(42);
+        txtIDAnimalAlimentado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtIDAnimalAlimentado.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtIDAlimentacionFocusLost(evt);
+                txtIDAnimalAlimentadoFocusLost(evt);
             }
         });
-
-        txtHoraAlimentacion.setColumns(11);
-        txtHoraAlimentacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtHoraAlimentacion.setText("0.0");
-        txtHoraAlimentacion.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtHoraAlimentacionFocusLost(evt);
-            }
-        });
-
-        txtFechaAlimentacion.setColumns(11);
-        txtFechaAlimentacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtFechaAlimentacion.setText("0");
-
-        txtRacion.setColumns(11);
-        txtRacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtRacion.setText("0");
 
         okButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         okButton.setText("Agregar");
@@ -133,51 +104,36 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
         });
 
         nombre_animal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        nombre_animal.setText("id_alimentacion");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("hora alimentacion");
+        nombre_animal.setText("id_animal_alimentado");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel7.setText("id_staff");
+        jLabel7.setText("hora_alimentacion");
 
-        txtIDStaff.setColumns(11);
-        txtIDStaff.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtIDStaff.setText("0");
+        txtHoraAlimentacion.setColumns(11);
+        txtHoraAlimentacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtHoraAlimentacion.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(okButton)
-                .addGap(26, 26, 26)
-                .addComponent(cancelButton)
-                .addGap(41, 41, 41))
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(nombre_animal)
+                        .addGap(38, 38, 38)
+                        .addComponent(txtIDAnimalAlimentado, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(93, 93, 93)
-                        .addComponent(txtIDStaff))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
+                        .addGap(61, 61, 61)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel4)
-                                    .addComponent(nombre_animal))
+                                .addComponent(okButton)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtIDAlimentacion)
-                                    .addComponent(txtFechaAlimentacion, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE)
-                                    .addComponent(txtHoraAlimentacion)
-                                    .addComponent(txtRacion, javax.swing.GroupLayout.Alignment.TRAILING))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(cancelButton))
+                            .addComponent(txtHoraAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,28 +141,16 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombre_animal)
-                    .addComponent(txtIDAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIDAnimalAlimentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(jLabel7)
                     .addComponent(txtHoraAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(txtFechaAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtRacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(txtIDStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton))
-                .addGap(23, 23, 23))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,47 +160,24 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNum1ActionPerformed
 
-    private void txtIDAlimentacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDAlimentacionFocusLost
-        String text = txtIDAlimentacion.getText().trim();
+    private void txtIDAnimalAlimentadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDAnimalAlimentadoFocusLost
+        String text = txtIDAnimalAlimentado.getText().trim();
         if (text.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Introducir el nombre del café.");
         }
-    }//GEN-LAST:event_txtIDAlimentacionFocusLost
-
-    private void txtHoraAlimentacionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHoraAlimentacionFocusLost
-        String value = txtHoraAlimentacion.getText().trim();
-
-        try {
-            Double.parseDouble(value);
-        } catch (NullPointerException np) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        } catch (NumberFormatException nf) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        }
-    }//GEN-LAST:event_txtHoraAlimentacionFocusLost
+    }//GEN-LAST:event_txtIDAnimalAlimentadoFocusLost
 
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        Integer id_alimentacion = Integer.parseInt(txtIDAlimentacion.getText());
+        Integer id_animal_alimentado = Integer.parseInt(txtIDAnimalAlimentado.getText());
+      
         String hora_alimentacion = txtHoraAlimentacion.getText();
-        String fecha_alimentacion = txtFechaAlimentacion.getText();
-        String racion = txtRacion.getText();        
-        Integer id_staff = Integer.parseInt( txtIDStaff.getText());
        
         StringBuilder sql
-        = new StringBuilder("INSERT INTO alimentacion (id_alimentacion,hora_alimentacion,fecha_alimentacion,racion,id_staff) VALUES (\'");
-        sql.append(id_alimentacion.intValue());
+        = new StringBuilder("INSERT INTO hora_alimentacion (id_animal_alimentado,hora_alimento) VALUES (\'");
+        sql.append(id_animal_alimentado.intValue());
         sql.append("\',");
         sql.append("\'");
         sql.append( hora_alimentacion);
-        sql.append("\',");
-        sql.append("\'");
-        sql.append( fecha_alimentacion );
-        sql.append("\',");
-        sql.append("\'");
-        sql.append(racion);
-        sql.append("\',");
-        sql.append("\'");
-        sql.append(id_staff.intValue());
         sql.append("\')");
         sql.append(";");
         System.out.println( sql.toString() );
@@ -264,7 +185,7 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
         try {
             db.update( sql.toString() );
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al insertar alimentacion.");
+            JOptionPane.showMessageDialog(this, "Error al insertar hora_alimentacion.");
             System.out.println( ex.getMessage() );
         }
         setVisible(false);
@@ -278,9 +199,6 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuItem jMenuItem1;
@@ -291,11 +209,8 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
     private javax.swing.JLabel nombre_animal;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField textNum1;
-    private javax.swing.JTextField txtFechaAlimentacion;
     private javax.swing.JTextField txtHoraAlimentacion;
-    private javax.swing.JTextField txtIDAlimentacion;
-    private javax.swing.JTextField txtIDStaff;
-    private javax.swing.JTextField txtRacion;
+    private javax.swing.JTextField txtIDAnimalAlimentado;
     // End of variables declaration//GEN-END:variables
 
 }

@@ -39,6 +39,7 @@ public class MainApp extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem13 = new javax.swing.JMenuItem();
         desktopPane = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
@@ -57,6 +58,8 @@ public class MainApp extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem19 = new javax.swing.JMenuItem();
+        jMenuItem20 = new javax.swing.JMenuItem();
         menuBrowse = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -70,12 +73,14 @@ public class MainApp extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
         jMenuItem16 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        jMenuItem21 = new javax.swing.JMenuItem();
+        jMenuItem22 = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
         contentMenuItem = new javax.swing.JMenuItem();
         aboutMenuItem = new javax.swing.JMenuItem();
+
+        jMenuItem13.setText("jMenuItem13");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -161,8 +166,29 @@ public class MainApp extends javax.swing.JFrame {
         });
         menuInsertar.add(jMenuItem4);
 
-        jMenuItem5.setText("Inventario mercancias");
+        jMenuItem5.setText("Hora Alimentacion");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         menuInsertar.add(jMenuItem5);
+
+        jMenuItem19.setText("Recibe");
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        menuInsertar.add(jMenuItem19);
+
+        jMenuItem20.setText("Utiliza");
+        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        menuInsertar.add(jMenuItem20);
 
         menuBar.add(menuInsertar);
 
@@ -233,7 +259,7 @@ public class MainApp extends javax.swing.JFrame {
 
         menuDelete.setText("Borrar");
 
-        jMenuItem11.setText("Café");
+        jMenuItem11.setText("Alimentacion");
         jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem11ActionPerformed(evt);
@@ -241,7 +267,8 @@ public class MainApp extends javax.swing.JFrame {
         });
         menuDelete.add(jMenuItem11);
 
-        jMenuItem12.setText("Cafeterias");
+        jMenuItem12.setText("Animal");
+        jMenuItem12.setToolTipText("");
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -249,31 +276,45 @@ public class MainApp extends javax.swing.JFrame {
         });
         menuDelete.add(jMenuItem12);
 
-        jMenuItem14.setText("Inventario café");
+        jMenuItem14.setText("Comida");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         menuDelete.add(jMenuItem14);
 
-        jMenuItem15.setText("Inventario mercancias");
+        jMenuItem15.setText("Hora Alimentacion");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
         menuDelete.add(jMenuItem15);
 
-        jMenu1.setText("Proveedores");
-
-        jMenuItem16.setText("Por clave");
+        jMenuItem16.setText("Recibe");
         jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem16ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem16);
+        menuDelete.add(jMenuItem16);
 
-        jMenuItem13.setText("Por nombre");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem21.setText("Staff");
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
+                jMenuItem21ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem13);
+        menuDelete.add(jMenuItem21);
 
-        menuDelete.add(jMenu1);
+        jMenuItem22.setText("Utiliza");
+        jMenuItem22.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem22ActionPerformed(evt);
+            }
+        });
+        menuDelete.add(jMenuItem22);
 
         menuBar.add(menuDelete);
 
@@ -338,12 +379,12 @@ public class MainApp extends javax.swing.JFrame {
         InsertAnimal dlg = new InsertAnimal(this, db);
         dlg.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-/*
+
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        DeleteCoffeeDialog dialog = new DeleteCoffeeDialog(new javax.swing.JFrame(), db);
+        DeleteAlimentacion dialog = new DeleteAlimentacion(new javax.swing.JFrame(), db);
         dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
-*/
+
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         InsertComida dialogo = new InsertComida(this, db);
         dialogo.setVisible(true);
@@ -436,26 +477,16 @@ public class MainApp extends javax.swing.JFrame {
             System.out.println( ex.getMessage());
         }
     }//GEN-LAST:event_jMenuItem10ActionPerformed
-/*
+
     private void menuBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBrowseActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuBrowseActionPerformed
 
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        DeleteSuppliersDialog dialog = new DeleteSuppliersDialog(this, db);
-        dialog.setVisible(true);
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
-
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        DeleteCoffeeHousesDialog dialog = new DeleteCoffeeHousesDialog(this, db);
+        DeleteAnimal dialog = new DeleteAnimal(this, db);
         dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
-        DeleteProveedorDialog dialogo = new DeleteProveedorDialog(this, db);
-        dialogo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
-*/
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
                 final String sql = "SELECT id_staff, nombre_staff , genero , "
                 + "fecha_nac, direccion, telefono FROM staff ORDER BY id_staff";
@@ -510,9 +541,47 @@ public class MainApp extends javax.swing.JFrame {
         dialogo.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        InsertHoraAlimentacion dialogo = new InsertHoraAlimentacion(this, db);
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+        InsertRecibe dialogo = new InsertRecibe(this, db);
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
+
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+        InsertUtiliza dialogo = new InsertUtiliza(this, db);
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        DeleteComida dialogo = new DeleteComida(this, db);
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        DeleteHoraAlimentacion dialogo = new DeleteHoraAlimentacion(this, db);
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+         DeleteRecibe dialogo = new DeleteRecibe(this, db);
+         dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
+       DeleteStaff dialogo = new DeleteStaff(this, db);
+       dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem21ActionPerformed
+
+    private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
+       DeleteUtiliza dialogo = new DeleteUtiliza(this, db);
+       dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem22ActionPerformed
+
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -556,7 +625,6 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu fileMenu;
     private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
@@ -567,7 +635,11 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem18;
+    private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem20;
+    private javax.swing.JMenuItem jMenuItem21;
+    private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
