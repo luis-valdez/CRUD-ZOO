@@ -145,10 +145,20 @@ public class MainApp extends javax.swing.JFrame {
         });
         menuInsertar.add(jMenuItem2);
 
-        jMenuItem3.setText("Proveedores");
+        jMenuItem3.setText("Staff");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         menuInsertar.add(jMenuItem3);
 
-        jMenuItem4.setText("Inventario café");
+        jMenuItem4.setText("Alimentacion");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         menuInsertar.add(jMenuItem4);
 
         jMenuItem5.setText("Inventario mercancias");
@@ -333,12 +343,12 @@ public class MainApp extends javax.swing.JFrame {
         DeleteCoffeeDialog dialog = new DeleteCoffeeDialog(new javax.swing.JFrame(), db);
         dialog.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
-
+*/
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        InsertHouses dialogo = new InsertHouses(this, true);
+        InsertComida dialogo = new InsertComida(this, db);
         dialogo.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
-*/
+
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         final String sql = "SELECT id_comida, nombre_comida , tipo , "
                 + "ubicacion FROM comida ORDER BY nombre_comida";
@@ -447,28 +457,6 @@ public class MainApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 */
     private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
-               final String sql = "SELECT  id_comida, id_alimentacion "
-                + "FROM utiliza ORDER BY id_comida";
-
-        final String labels[] = {"id_comida", "id_alimentacion"};
-        
-        try {
-            ResultSet rs = db.query(sql);
-
-            JDBCTableAdpater modelo = new JDBCTableAdpater(rs, labels);
-
-            modelo.addTableModelListener(new ZooTablesListener(db));
-
-            TableBrowser browser = new TableBrowser("Zoo", modelo);
-            browser.setVisible(true);
-            this.desktopPane.add(browser);
-            rs.close();
-        } catch (SQLException ex) {
-            System.out.println( ex.getMessage());
-        }
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
-
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
                 final String sql = "SELECT id_staff, nombre_staff , genero , "
                 + "fecha_nac, direccion, telefono FROM staff ORDER BY id_staff";
 
@@ -488,7 +476,39 @@ public class MainApp extends javax.swing.JFrame {
         } catch (SQLException ex) {
             System.out.println( ex.getMessage());
         }
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+                final String sql = "SELECT id_comida, id_alimentacion "
+                        +"FROM utiliza ORDER BY id_comida";
+
+        final String labels[] = {"id_comida", "id_alimentacion"};
+        
+        try {
+            ResultSet rs = db.query(sql);
+
+            JDBCTableAdpater modelo = new JDBCTableAdpater(rs, labels);
+
+            modelo.addTableModelListener(new ZooTablesListener(db));
+
+            TableBrowser browser = new TableBrowser("Zoo", modelo);
+            browser.setVisible(true);
+            this.desktopPane.add(browser);
+            rs.close();
+        } catch (SQLException ex) {
+            System.out.println( ex.getMessage());
+        }
     }//GEN-LAST:event_jMenuItem18ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        InsertStaff dialogo = new InsertStaff(this, db);
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        InsertAlimentacion dialogo = new InsertAlimentacion(this, db);
+        dialogo.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments

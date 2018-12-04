@@ -31,7 +31,7 @@ public class InsertAnimal extends javax.swing.JDialog {
     }
 
     private void buildCombo(Database db) {
-        final String sql = "select SUP_ID, SUP_NAME FROM suppliers";
+        final String sql = "select id_animal, habitat FROM animal";
         
         try {
             // Enviar consulta a la base de datos
@@ -40,7 +40,7 @@ public class InsertAnimal extends javax.swing.JDialog {
                 int id = rs.getInt(1);
                 String label = rs.getString(2);
                 // Agregar nombre del proveedor al combo
-                comboProv.addItem(label);
+                comboHabitat.addItem(label);
                 // Guardar nombre y ID del proveedor
                 ht.put(label, id);
             }
@@ -57,24 +57,87 @@ public class InsertAnimal extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtTotal = new javax.swing.JTextField();
-        okButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        comboProv = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        textNum1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
-        txtPrecio = new javax.swing.JTextField();
-        txtVentas = new javax.swing.JTextField();
+        txtNombreAnimal = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
+        txtEspecie = new javax.swing.JTextField();
+        txtEspacio = new javax.swing.JTextField();
+        okButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
+        nombre_animal = new javax.swing.JLabel();
+        comboHabitat = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        txtDescripcion = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        textNum1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textNum1ActionPerformed(evt);
+            }
+        });
 
-        txtTotal.setColumns(11);
-        txtTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtTotal.setText("0");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel6.setText("espacio asignado");
+
+        jScrollPane2.setViewportView(jTextPane1);
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setText("Habitat");
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setText("especie");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setText("espacio asignado");
+
+        txtNombreAnimal.setColumns(42);
+        txtNombreAnimal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtNombreAnimal.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtNombreAnimalFocusLost(evt);
+            }
+        });
+
+        txtID.setColumns(11);
+        txtID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtID.setText("0.0");
+        txtID.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtIDFocusLost(evt);
+            }
+        });
+
+        txtEspecie.setColumns(11);
+        txtEspecie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtEspecie.setText("0");
+
+        txtEspacio.setColumns(11);
+        txtEspacio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtEspacio.setText("0");
 
         okButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         okButton.setText("Agregar");
@@ -92,132 +155,143 @@ public class InsertAnimal extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel1.setText("Nombre:");
+        nombre_animal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nombre_animal.setText("Nombre animal");
 
-        comboProv.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        comboHabitat.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("Precio:");
+        jLabel2.setText("id_animal");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("Proveedor:");
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setText("descripcion");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setText("Ventas:");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel5.setText("Total:");
-
-        txtNombre.setColumns(42);
-        txtNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtNombre.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreFocusLost(evt);
-            }
-        });
-
-        txtPrecio.setColumns(11);
-        txtPrecio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtPrecio.setText("0.0");
-        txtPrecio.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtPrecioFocusLost(evt);
-            }
-        });
-
-        txtVentas.setColumns(11);
-        txtVentas.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtVentas.setText("0");
+        txtDescripcion.setColumns(11);
+        txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        txtDescripcion.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(48, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(okButton)
+                .addGap(26, 26, 26)
+                .addComponent(cancelButton)
+                .addGap(41, 41, 41))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(29, 29, 29)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtTotal)
-                            .addComponent(txtVentas)
-                            .addComponent(txtPrecio)
-                            .addComponent(comboProv, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 393, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(okButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cancelButton)
-                        .addGap(15, 15, 15)))
-                .addGap(44, 44, 44))
+                    .addComponent(jLabel8)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(nombre_animal)
+                            .addGap(29, 29, 29)
+                            .addComponent(txtNombreAnimal, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel5))
+                            .addGap(18, 18, 18)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtEspacio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+                                .addComponent(txtEspecie, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(comboHabitat, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombre_animal)
+                    .addComponent(txtNombreAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(comboProv, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboHabitat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtVentas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEspacio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(23, 23, 23))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void textNum1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textNum1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textNum1ActionPerformed
+
+    private void txtNombreAnimalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreAnimalFocusLost
+        String text = txtNombreAnimal.getText().trim();
+        if (text.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introducir el nombre del café.");
+        }
+    }//GEN-LAST:event_txtNombreAnimalFocusLost
+
+    private void txtIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDFocusLost
+        String value = txtID.getText().trim();
+
+        try {
+            Double.parseDouble(value);
+        } catch (NullPointerException np) {
+            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
+        } catch (NumberFormatException nf) {
+            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
+        }
+    }//GEN-LAST:event_txtIDFocusLost
+
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        String nombre_animal = txtNombre.getText();
-        Integer idAnimal = (Integer) ht.get( comboProv.getSelectedItem() );
-        String especie = txtPrecio.getText();
-        String espacio_asignado = txtVentas.getText();
-        String habitat = txtTotal.getText();
-        String descripcion = txtTotal.getText();
-        
+        String nombre_animal = txtNombreAnimal.getText();
+        String habitat = comboHabitat.getSelectedItem().toString();
+        Integer id_animal = Integer.parseInt(txtID.getText());
+        String especie = txtEspecie.getText();
+        String espacio_asignado = txtEspacio.getText();
+        String descripcion = txtDescripcion.getText();
 
         StringBuilder sql
-        = new StringBuilder("INSERT INTO animal (nombre_animal,id_animal,especie,espacio_asignado,habitat,descripcion) VALUES (\'");
+        = new StringBuilder("INSERT INTO animal (nombre_animal,habitat,id_animal,especie,espacio_asignado,descripcion) VALUES (\'");
         sql.append(nombre_animal);
         sql.append("\',");
-        sql.append( idAnimal.intValue() );
-        sql.append(",");
+        sql.append("\'");
+        sql.append( habitat);
+        sql.append("\',");
+        sql.append("\'");
+        sql.append( id_animal.intValue() );
+        sql.append("\',");
+        sql.append("\'");
         sql.append(especie);
-        sql.append(",");
+        sql.append("\',");
+        sql.append("\'");
         sql.append(espacio_asignado);
-        sql.append(",");
-        sql.append(habitat);
-        sql.append(")");
+        sql.append("\',");
+        sql.append("\'");
         sql.append(descripcion);
-        sql.append(")");
-        
+        sql.append("\')");
+        sql.append(";");
         System.out.println( sql.toString() );
 
         try {
@@ -233,40 +307,30 @@ public class InsertAnimal extends javax.swing.JDialog {
         setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
-    private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
-        String text = txtNombre.getText().trim();
-        if (text.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introducir el nombre del café.");
-        }
-    }//GEN-LAST:event_txtNombreFocusLost
-
-    private void txtPrecioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPrecioFocusLost
-        String value = txtPrecio.getText().trim();
-
-        try {
-            Double.parseDouble(value);
-        } catch (NullPointerException np) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        } catch (NumberFormatException nf) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        }
-    }//GEN-LAST:event_txtPrecioFocusLost
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JComboBox<String> comboProv;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JComboBox<String> comboHabitat;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel nombre_animal;
     private javax.swing.JButton okButton;
-    private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtPrecio;
-    private javax.swing.JTextField txtTotal;
-    private javax.swing.JTextField txtVentas;
+    private javax.swing.JTextField textNum1;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtEspacio;
+    private javax.swing.JTextField txtEspecie;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtNombreAnimal;
     // End of variables declaration//GEN-END:variables
 
 }
