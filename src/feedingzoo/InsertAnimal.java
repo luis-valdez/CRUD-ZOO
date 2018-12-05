@@ -33,20 +33,10 @@ public class InsertAnimal extends javax.swing.JDialog {
     private void buildCombo(Database db) {
         final String sql = "select id_animal, habitat FROM animal";
         
-        try {
-            // Enviar consulta a la base de datos
-            ResultSet rs = db.query(sql);
-            while (rs.next()) {
-                int id = rs.getInt(1);
-                String label = rs.getString(2);
-                // Agregar nombre del proveedor al combo
-                comboHabitat.addItem(label);
-                // Guardar nombre y ID del proveedor
-                ht.put(label, id);
-            }
-        } catch (SQLException ex) {
-            
-        }
+        comboHabitat.addItem("sabana");
+        comboHabitat.addItem("polar");
+        comboHabitat.addItem("desierto");
+        comboHabitat.addItem("sabana");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,7 +114,6 @@ public class InsertAnimal extends javax.swing.JDialog {
 
         txtID.setColumns(11);
         txtID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtID.setText("0.0");
         txtID.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtIDFocusLost(evt);
@@ -133,11 +122,9 @@ public class InsertAnimal extends javax.swing.JDialog {
 
         txtEspecie.setColumns(11);
         txtEspecie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtEspecie.setText("0");
 
         txtEspacio.setColumns(11);
         txtEspacio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtEspacio.setText("0");
 
         okButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         okButton.setText("Agregar");
@@ -168,7 +155,6 @@ public class InsertAnimal extends javax.swing.JDialog {
 
         txtDescripcion.setColumns(11);
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtDescripcion.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -248,7 +234,7 @@ public class InsertAnimal extends javax.swing.JDialog {
     private void txtNombreAnimalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreAnimalFocusLost
         String text = txtNombreAnimal.getText().trim();
         if (text.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introducir el nombre del café.");
+            JOptionPane.showMessageDialog(this, "Introducir el nombre del animal.");
         }
     }//GEN-LAST:event_txtNombreAnimalFocusLost
 
@@ -297,7 +283,7 @@ public class InsertAnimal extends javax.swing.JDialog {
         try {
             db.update( sql.toString() );
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al insertar café.");
+            JOptionPane.showMessageDialog(this, "Error al insertar animal.");
             System.out.println( ex.getMessage() );
         }
         setVisible(false);

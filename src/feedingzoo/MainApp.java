@@ -59,7 +59,6 @@ public class MainApp extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem19 = new javax.swing.JMenuItem();
-        jMenuItem20 = new javax.swing.JMenuItem();
         menuBrowse = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
@@ -174,21 +173,13 @@ public class MainApp extends javax.swing.JFrame {
         });
         menuInsertar.add(jMenuItem5);
 
-        jMenuItem19.setText("Recibe");
+        jMenuItem19.setText("Evento");
         jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem19ActionPerformed(evt);
             }
         });
         menuInsertar.add(jMenuItem19);
-
-        jMenuItem20.setText("Utiliza");
-        jMenuItem20.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem20ActionPerformed(evt);
-            }
-        });
-        menuInsertar.add(jMenuItem20);
 
         menuBar.add(menuInsertar);
 
@@ -547,14 +538,9 @@ public class MainApp extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
-        InsertRecibe dialogo = new InsertRecibe(this, db);
+        InsertEvento dialogo = new InsertEvento(this, db);
         dialogo.setVisible(true);
     }//GEN-LAST:event_jMenuItem19ActionPerformed
-
-    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
-        InsertUtiliza dialogo = new InsertUtiliza(this, db);
-        dialogo.setVisible(true);
-    }//GEN-LAST:event_jMenuItem20ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
         DeleteComida dialogo = new DeleteComida(this, db);
@@ -637,7 +623,6 @@ public class MainApp extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem18;
     private javax.swing.JMenuItem jMenuItem19;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem20;
     private javax.swing.JMenuItem jMenuItem21;
     private javax.swing.JMenuItem jMenuItem22;
     private javax.swing.JMenuItem jMenuItem3;

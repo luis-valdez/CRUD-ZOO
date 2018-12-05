@@ -27,7 +27,26 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
         this.db = db;
         ht = new HashMap<String, Integer>();
         // Construir el combo con el ID y Nombre de proveedor
+        buildCombo(db);
 
+    }
+    
+            public void buildCombo(Database db) {
+        final String sql = "SELECT id_staff FROM staff ORDER BY id_staff";
+        ResultSet rs = null;
+        try {
+            // Enviar consulta a la base de datos
+            rs = db.query(sql);
+            while (rs.next()) {
+                String label = rs.getString(1);
+                // Agregar nombre del proveedor al combo
+                comboIDAnimal.addItem(label);
+                //System.out.println(label);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     /**
@@ -46,12 +65,14 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jMenuItem1 = new javax.swing.JMenuItem();
-        txtIDAnimalAlimentado = new javax.swing.JTextField();
+        comboIDStaff = new javax.swing.JComboBox<>();
+        comboIDStaff1 = new javax.swing.JComboBox<>();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         nombre_animal = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtHoraAlimentacion = new javax.swing.JTextField();
+        comboIDAnimal = new javax.swing.JComboBox<>();
 
         textNum1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,13 +100,9 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
 
         jMenuItem1.setText("jMenuItem1");
 
-        txtIDAnimalAlimentado.setColumns(42);
-        txtIDAnimalAlimentado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtIDAnimalAlimentado.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtIDAnimalAlimentadoFocusLost(evt);
-            }
-        });
+        comboIDStaff.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+
+        comboIDStaff1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
         okButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         okButton.setText("Agregar");
@@ -111,7 +128,8 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
 
         txtHoraAlimentacion.setColumns(11);
         txtHoraAlimentacion.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtHoraAlimentacion.setText("0");
+
+        comboIDAnimal.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,29 +137,26 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(nombre_animal))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(nombre_animal)
-                        .addGap(38, 38, 38)
-                        .addComponent(txtIDAnimalAlimentado, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(61, 61, 61)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(okButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(cancelButton))
-                            .addComponent(txtHoraAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(okButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(cancelButton))
+                    .addComponent(txtHoraAlimentacion, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                    .addComponent(comboIDAnimal, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombre_animal)
-                    .addComponent(txtIDAnimalAlimentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboIDAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -150,7 +165,7 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -160,15 +175,8 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNum1ActionPerformed
 
-    private void txtIDAnimalAlimentadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDAnimalAlimentadoFocusLost
-        String text = txtIDAnimalAlimentado.getText().trim();
-        if (text.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introducir el nombre del café.");
-        }
-    }//GEN-LAST:event_txtIDAnimalAlimentadoFocusLost
-
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        Integer id_animal_alimentado = Integer.parseInt(txtIDAnimalAlimentado.getText());
+        Integer id_animal_alimentado = Integer.parseInt(comboIDAnimal.getSelectedItem().toString());
       
         String hora_alimentacion = txtHoraAlimentacion.getText();
        
@@ -199,6 +207,9 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
+    private javax.swing.JComboBox<String> comboIDAnimal;
+    private javax.swing.JComboBox<String> comboIDStaff;
+    private javax.swing.JComboBox<String> comboIDStaff1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuItem jMenuItem1;
@@ -210,7 +221,6 @@ public class InsertHoraAlimentacion extends javax.swing.JDialog {
     private javax.swing.JButton okButton;
     private javax.swing.JTextField textNum1;
     private javax.swing.JTextField txtHoraAlimentacion;
-    private javax.swing.JTextField txtIDAnimalAlimentado;
     // End of variables declaration//GEN-END:variables
 
 }

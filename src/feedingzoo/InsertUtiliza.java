@@ -104,7 +104,7 @@ public class InsertUtiliza extends javax.swing.JDialog {
         });
 
         nombre_animal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        nombre_animal.setText("id_animal");
+        nombre_animal.setText("id_comida");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("id_alimentacion");
