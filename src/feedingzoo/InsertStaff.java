@@ -8,6 +8,8 @@ package feedingzoo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -55,12 +57,10 @@ public class InsertStaff extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNombreStaff = new javax.swing.JTextField();
-        txtIDStaff = new javax.swing.JTextField();
         txtMes = new javax.swing.JTextField();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         nombre_animal = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtDireccion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -106,19 +106,6 @@ public class InsertStaff extends javax.swing.JDialog {
 
         txtNombreStaff.setColumns(42);
         txtNombreStaff.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtNombreStaff.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreStaffFocusLost(evt);
-            }
-        });
-
-        txtIDStaff.setColumns(11);
-        txtIDStaff.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtIDStaff.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtIDStaffFocusLost(evt);
-            }
-        });
 
         txtMes.setColumns(11);
         txtMes.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -141,9 +128,6 @@ public class InsertStaff extends javax.swing.JDialog {
 
         nombre_animal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nombre_animal.setText("Nombre staff");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("id_staff");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("direccion");
@@ -185,44 +169,40 @@ public class InsertStaff extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtIDStaff, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(106, 106, 106)
-                        .addComponent(comboGenero, 0, 538, Short.MAX_VALUE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel9)
-                            .addGap(98, 98, 98)
-                            .addComponent(txtTelefono))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(nombre_animal)
-                            .addGap(64, 64, 64)
-                            .addComponent(txtNombreStaff, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1)
-                                .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
+                        .addComponent(comboGenero, 0, 532, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(98, 98, 98)
+                                .addComponent(txtTelefono))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(nombre_animal)
+                                .addGap(64, 64, 64)
+                                .addComponent(txtNombreStaff, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtAño, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jLabel7))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -232,11 +212,7 @@ public class InsertStaff extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombre_animal)
                     .addComponent(txtNombreStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtIDStaff, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(comboGenero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -273,29 +249,19 @@ public class InsertStaff extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNum1ActionPerformed
 
-    private void txtNombreStaffFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreStaffFocusLost
-        String text = txtNombreStaff.getText().trim();
-        if (text.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introducir el nombre del Staff.");
-        }
-    }//GEN-LAST:event_txtNombreStaffFocusLost
-
-    private void txtIDStaffFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDStaffFocusLost
-        String value = txtIDStaff.getText().trim();
-
-        try {
-            Double.parseDouble(value);
-        } catch (NullPointerException np) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        } catch (NumberFormatException nf) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        }
-    }//GEN-LAST:event_txtIDStaffFocusLost
-
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         String nombre_staff = txtNombreStaff.getText();
-  
-        Integer id_staff = Integer.parseInt(txtIDStaff.getText());
+        String id_staff = "";
+                try {    
+            ResultSet rs = db.query("SELECT nextval(pg_get_serial_sequence('animal', 'id_animal'))");
+            rs.next();
+            
+            id_staff = rs.getString(1);
+            System.out.println(id_staff);
+        }
+            catch (SQLException ex) {
+            Logger.getLogger(InsertAnimal.class.getName()).log(Level.SEVERE, null,ex);
+        }
         String genero = comboGenero.getSelectedItem().toString();
         String fechaNac = txtMes.getText() + "/" + txtDia.getText()+ "/" + txtAño.getText();
         String direccion = txtDireccion.getText();
@@ -306,7 +272,7 @@ public class InsertStaff extends javax.swing.JDialog {
         sql.append(nombre_staff);
         sql.append("\',");
         sql.append("\'");
-        sql.append( id_staff.intValue());
+        sql.append( id_staff);
         sql.append("\',");
         sql.append("\'");
         sql.append( genero );
@@ -342,7 +308,6 @@ public class InsertStaff extends javax.swing.JDialog {
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> comboGenero;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -361,7 +326,6 @@ public class InsertStaff extends javax.swing.JDialog {
     private javax.swing.JTextField txtAño;
     private javax.swing.JTextField txtDia;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtIDStaff;
     private javax.swing.JTextField txtMes;
     private javax.swing.JTextField txtNombreStaff;
     private javax.swing.JTextField txtTelefono;

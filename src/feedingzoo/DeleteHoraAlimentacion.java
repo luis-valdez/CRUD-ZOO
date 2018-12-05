@@ -86,7 +86,7 @@ public class DeleteHoraAlimentacion extends javax.swing.JDialog {
         id_animal_alimentado = new javax.swing.JLabel();
         comboName = new javax.swing.JComboBox<>();
 
-        setTitle("Borrar Café");
+        setTitle("Borrar Hora de Alimentacion");
         setModal(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

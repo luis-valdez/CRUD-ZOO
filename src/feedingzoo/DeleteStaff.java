@@ -86,7 +86,7 @@ public class DeleteStaff extends javax.swing.JDialog {
         id_staff = new javax.swing.JLabel();
         comboName = new javax.swing.JComboBox<>();
 
-        setTitle("Borrar Café");
+        setTitle("Borrar Staff");
         setModal(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

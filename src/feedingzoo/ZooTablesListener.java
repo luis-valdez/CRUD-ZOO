@@ -19,16 +19,18 @@ import javax.swing.table.TableModel;
 public class ZooTablesListener implements TableModelListener  {
     
     private final Database db;
-    
-    public ZooTablesListener(Database d) {
+    private final String nombret;
+    public ZooTablesListener(Database d, String nombretabla) {
         super();
         db = d;
+        nombret = nombretabla;
     }
 
     @Override
+    
+       
     public void tableChanged(TableModelEvent event) {
         JDBCTableAdpater modelo = (JDBCTableAdpater) event.getSource();        
-       
         int row = event.getFirstRow();
         int column = event.getColumn();
         int type = event.getType();
@@ -37,11 +39,10 @@ public class ZooTablesListener implements TableModelListener  {
         if( column == 0  ) {
             return;
         }      
-        
-        String colName = modelo.getColumnName(column);
+        if (nombret == "animal"||nombret == "staff"||nombret == "comida"||nombret == "alimentacion") {
         String colSQLName = modelo.getSQLColumnName(column);        
         String sql = String.format(
-                "UPDATE coffees SET %s = %s WHERE COF_NAME = \'%s\'",
+                "UPDATE "+nombret+" SET %s = \'%s\' WHERE id_"+nombret+" = \'%s\'",
                 colSQLName,
                 modelo.getValueAt(row, column),
                 modelo.getValueAt(row, 0));
@@ -52,7 +53,9 @@ public class ZooTablesListener implements TableModelListener  {
             System.out.println(ex.getMessage());
         }
         System.out.println(sql);
+        }
+        }
+            
+        
     }
     
-    
-}

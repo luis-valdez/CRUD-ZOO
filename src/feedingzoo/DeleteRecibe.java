@@ -88,7 +88,7 @@ public class DeleteRecibe extends javax.swing.JDialog {
         id_animal = new javax.swing.JLabel();
         comboName = new javax.swing.JComboBox<>();
 
-        setTitle("Borrar Café");
+        setTitle("Borrar Recibe");
         setModal(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

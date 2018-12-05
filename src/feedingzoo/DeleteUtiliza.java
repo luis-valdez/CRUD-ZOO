@@ -87,7 +87,7 @@ public class DeleteUtiliza extends javax.swing.JDialog {
         id_comida = new javax.swing.JLabel();
         comboName = new javax.swing.JComboBox<>();
 
-        setTitle("Borrar Café");
+        setTitle("Borrar Utiliza");
         setModal(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

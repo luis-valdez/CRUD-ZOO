@@ -8,6 +8,8 @@ package feedingzoo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -58,14 +60,12 @@ public class InsertAnimal extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNombreAnimal = new javax.swing.JTextField();
-        txtID = new javax.swing.JTextField();
         txtEspecie = new javax.swing.JTextField();
         txtEspacio = new javax.swing.JTextField();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         nombre_animal = new javax.swing.JLabel();
         comboHabitat = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
 
@@ -106,19 +106,6 @@ public class InsertAnimal extends javax.swing.JDialog {
 
         txtNombreAnimal.setColumns(42);
         txtNombreAnimal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtNombreAnimal.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreAnimalFocusLost(evt);
-            }
-        });
-
-        txtID.setColumns(11);
-        txtID.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtID.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtIDFocusLost(evt);
-            }
-        });
 
         txtEspecie.setColumns(11);
         txtEspecie.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -146,9 +133,6 @@ public class InsertAnimal extends javax.swing.JDialog {
         nombre_animal.setText("Nombre animal");
 
         comboHabitat.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("id_animal");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("descripcion");
@@ -178,14 +162,12 @@ public class InsertAnimal extends javax.swing.JDialog {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
-                                .addComponent(jLabel2)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5))
                             .addGap(18, 18, 18)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(txtEspacio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
                                 .addComponent(txtEspecie, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(comboHabitat, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txtDescripcion, javax.swing.GroupLayout.Alignment.LEADING)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -201,11 +183,7 @@ public class InsertAnimal extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(comboHabitat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtEspecie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -217,7 +195,7 @@ public class InsertAnimal extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton))
@@ -231,62 +209,56 @@ public class InsertAnimal extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNum1ActionPerformed
 
-    private void txtNombreAnimalFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreAnimalFocusLost
-        String text = txtNombreAnimal.getText().trim();
-        if (text.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introducir el nombre del animal.");
-        }
-    }//GEN-LAST:event_txtNombreAnimalFocusLost
-
-    private void txtIDFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDFocusLost
-        String value = txtID.getText().trim();
-
-        try {
-            Double.parseDouble(value);
-        } catch (NullPointerException np) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        } catch (NumberFormatException nf) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        }
-    }//GEN-LAST:event_txtIDFocusLost
-
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        String nombre_animal = txtNombreAnimal.getText();
-        String habitat = comboHabitat.getSelectedItem().toString();
-        Integer id_animal = Integer.parseInt(txtID.getText());
-        String especie = txtEspecie.getText();
-        String espacio_asignado = txtEspacio.getText();
-        String descripcion = txtDescripcion.getText();
-
-        StringBuilder sql
-        = new StringBuilder("INSERT INTO animal (nombre_animal,habitat,id_animal,especie,espacio_asignado,descripcion) VALUES (\'");
-        sql.append(nombre_animal);
-        sql.append("\',");
-        sql.append("\'");
-        sql.append( habitat);
-        sql.append("\',");
-        sql.append("\'");
-        sql.append( id_animal.intValue() );
-        sql.append("\',");
-        sql.append("\'");
-        sql.append(especie);
-        sql.append("\',");
-        sql.append("\'");
-        sql.append(espacio_asignado);
-        sql.append("\',");
-        sql.append("\'");
-        sql.append(descripcion);
-        sql.append("\')");
-        sql.append(";");
-        System.out.println( sql.toString() );
-
-        try {
-            db.update( sql.toString() );
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(this, "Error al insertar animal.");
-            System.out.println( ex.getMessage() );
+                                                 
+            String nombre_animal = txtNombreAnimal.getText();
+            String habitat = comboHabitat.getSelectedItem().toString();
+            String id_animal="";
+            String especie = txtEspecie.getText();
+            String espacio_asignado = txtEspacio.getText();
+            String descripcion = txtDescripcion.getText();
+        try {    
+            ResultSet rs = db.query("SELECT nextval(pg_get_serial_sequence('animal', 'id_animal'))");
+            rs.next();
+            System.out.println(rs.getString(1));
+            id_animal = rs.getString(1);
+            System.out.println(id_animal);
         }
-        setVisible(false);
+            catch (SQLException ex) {
+            Logger.getLogger(InsertAnimal.class.getName()).log(Level.SEVERE, null,ex);
+        }
+            
+            
+            StringBuilder sql
+                    = new StringBuilder("INSERT INTO animal (nombre_animal,habitat,id_animal,especie,espacio_asignado,descripcion) VALUES (\'");
+            sql.append(nombre_animal);
+            sql.append("\',");
+            sql.append("\'");
+            sql.append( habitat);
+            sql.append("\',");
+            sql.append("\'");
+            sql.append( id_animal );
+            sql.append("\',");
+            sql.append("\'");
+            sql.append(especie);
+            sql.append("\',");
+            sql.append("\'");
+            sql.append(espacio_asignado);
+            sql.append("\',");
+            sql.append("\'");
+            sql.append(descripcion);
+            sql.append("\')");
+            sql.append(";");
+            System.out.println( sql.toString() );
+            
+            try {
+                db.update( sql.toString() );
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this, "Error al insertar animal.");
+                System.out.println( ex.getMessage() );
+            }
+            setVisible(false);
+         
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
@@ -298,7 +270,6 @@ public class InsertAnimal extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> comboHabitat;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -315,7 +286,6 @@ public class InsertAnimal extends javax.swing.JDialog {
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtEspacio;
     private javax.swing.JTextField txtEspecie;
-    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtNombreAnimal;
     // End of variables declaration//GEN-END:variables
 

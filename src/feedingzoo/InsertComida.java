@@ -8,6 +8,8 @@ package feedingzoo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -67,13 +69,11 @@ public class InsertComida extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         txtNombreComida = new javax.swing.JTextField();
-        txtIDComida = new javax.swing.JTextField();
         txtTipo = new javax.swing.JTextField();
         txtUbicacion = new javax.swing.JTextField();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         nombre_animal = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         textNum1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,19 +109,6 @@ public class InsertComida extends javax.swing.JDialog {
 
         txtNombreComida.setColumns(42);
         txtNombreComida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtNombreComida.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtNombreComidaFocusLost(evt);
-            }
-        });
-
-        txtIDComida.setColumns(11);
-        txtIDComida.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtIDComida.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtIDComidaFocusLost(evt);
-            }
-        });
 
         txtTipo.setColumns(11);
         txtTipo.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -148,9 +135,6 @@ public class InsertComida extends javax.swing.JDialog {
         nombre_animal.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nombre_animal.setText("Nombre comida");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setText("id_comida");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -171,13 +155,10 @@ public class InsertComida extends javax.swing.JDialog {
                             .addGap(29, 29, 29)
                             .addComponent(txtNombreComida, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE))
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4))
-                            .addGap(68, 68, 68)
+                            .addComponent(jLabel4)
+                            .addGap(111, 111, 111)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtIDComida, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
-                                .addComponent(txtTipo)
+                                .addComponent(txtTipo, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
                                 .addComponent(txtUbicacion, javax.swing.GroupLayout.Alignment.TRAILING)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -188,11 +169,7 @@ public class InsertComida extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nombre_animal)
                     .addComponent(txtNombreComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtIDComida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(61, 61, 61)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -214,38 +191,29 @@ public class InsertComida extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNum1ActionPerformed
 
-    private void txtNombreComidaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreComidaFocusLost
-        String text = txtNombreComida.getText().trim();
-        if (text.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introducir el nombre del café.");
-        }
-    }//GEN-LAST:event_txtNombreComidaFocusLost
-
-    private void txtIDComidaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDComidaFocusLost
-        String value = txtIDComida.getText().trim();
-
-        try {
-            Double.parseDouble(value);
-        } catch (NullPointerException np) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        } catch (NumberFormatException nf) {
-            JOptionPane.showMessageDialog(this, "Introducir valor numerico en precio.");
-        }
-    }//GEN-LAST:event_txtIDComidaFocusLost
-
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         String nombre_comida = txtNombreComida.getText();
-        
-        Integer id_comida = Integer.parseInt(txtIDComida.getText());
+        String id_comida = "";
+
+        try {
+            ResultSet rs = db.query("SELECT nextval(pg_get_serial_sequence('comida', 'id_comida'))");
+            rs.next();
+            System.out.println(rs.getString(1));
+            id_comida = rs.getString(1);
+            System.out.println(id_comida);
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         String tipo = txtTipo.getText();
         String ubicacion = txtUbicacion.getText();
-       
+
         StringBuilder sql
-        = new StringBuilder("INSERT INTO comida (nombre_comida,id_comida,tipo,ubicacion) VALUES (\'");
+                = new StringBuilder("INSERT INTO comida (nombre_comida,id_comida,tipo,ubicacion) VALUES (\'");
         sql.append(nombre_comida);
         sql.append("\',");
         sql.append("\'");
-        sql.append( id_comida.intValue());
+        sql.append( id_comida);
         sql.append("\',");
         sql.append("\'");
         sql.append( tipo );
@@ -273,7 +241,6 @@ public class InsertComida extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -285,7 +252,6 @@ public class InsertComida extends javax.swing.JDialog {
     private javax.swing.JLabel nombre_animal;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField textNum1;
-    private javax.swing.JTextField txtIDComida;
     private javax.swing.JTextField txtNombreComida;
     private javax.swing.JTextField txtTipo;
     private javax.swing.JTextField txtUbicacion;

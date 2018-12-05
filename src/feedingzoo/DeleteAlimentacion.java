@@ -86,7 +86,7 @@ public class DeleteAlimentacion extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         comboName = new javax.swing.JComboBox<>();
 
-        setTitle("Borrar Café");
+        setTitle("Borrar Alimentacion");
         setModal(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {

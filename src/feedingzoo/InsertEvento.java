@@ -7,19 +7,20 @@ package feedingzoo;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Maestro
- */
+
 public class InsertEvento extends javax.swing.JDialog {
-    /**
-     * Creates new form InsertCoffeesDialog
-     */
+
     private final HashMap ht;
     private final Database db;
+    private ArrayList<String> comidas  = new ArrayList<String>();
+    private ArrayList<String> IDcomidas  = new ArrayList<String>();
+    int c = 0;
 
     public InsertEvento(java.awt.Frame parent, Database db) {
         super(parent, true);
@@ -29,7 +30,28 @@ public class InsertEvento extends javax.swing.JDialog {
         // Construir el combo con el ID y Nombre de proveedor
         buildComboAlimentacion(db);
         buildComboComida(db);
+        buildComboAnimal(db);
+        
+        campoComidas.setEditable(false);
+        
 
+    }
+            public void buildComboAnimal(Database db) {
+        final String sql = "SELECT id_animal FROM animal ORDER BY id_animal";
+        ResultSet rs = null;
+        try {
+            // Enviar consulta a la base de datos
+            rs = db.query(sql);
+            while (rs.next()) {
+                String label = rs.getString(1);
+                // Agregar nombre del proveedor al combo
+                comboIDAnimal.addItem(label);
+                //System.out.println(label);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
         public void buildComboAlimentacion(Database db) {
         final String sql = "SELECT id_alimentacion FROM alimentacion ORDER BY id_alimentacion";
@@ -85,7 +107,7 @@ public class InsertEvento extends javax.swing.JDialog {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jMenuItem1 = new javax.swing.JMenuItem();
-        txtIDAnimalAlimentado = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         nombre_animal = new javax.swing.JLabel();
@@ -93,6 +115,12 @@ public class InsertEvento extends javax.swing.JDialog {
         nombre_animal1 = new javax.swing.JLabel();
         comboIDAlimentacion = new javax.swing.JComboBox<>();
         comboIDComida = new javax.swing.JComboBox<>();
+        comboIDAnimal = new javax.swing.JComboBox<>();
+        campoComidas = new javax.swing.JTextField();
+        nombreAnimalLabel = new javax.swing.JLabel();
+        alimentacionLabel = new javax.swing.JLabel();
+        comidaLabel = new javax.swing.JLabel();
+        botonAgregar = new javax.swing.JButton();
 
         textNum1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,13 +148,7 @@ public class InsertEvento extends javax.swing.JDialog {
 
         jMenuItem1.setText("jMenuItem1");
 
-        txtIDAnimalAlimentado.setColumns(42);
-        txtIDAnimalAlimentado.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        txtIDAnimalAlimentado.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtIDAnimalAlimentadoFocusLost(evt);
-            }
-        });
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         okButton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         okButton.setText("Agregar");
@@ -154,8 +176,44 @@ public class InsertEvento extends javax.swing.JDialog {
         nombre_animal1.setText("id_comida");
 
         comboIDAlimentacion.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        comboIDAlimentacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboIDAlimentacionActionPerformed(evt);
+            }
+        });
 
         comboIDComida.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        comboIDComida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboIDComidaActionPerformed(evt);
+            }
+        });
+
+        comboIDAnimal.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        comboIDAnimal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboIDAnimalActionPerformed(evt);
+            }
+        });
+
+        campoComidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoComidasActionPerformed(evt);
+            }
+        });
+
+        nombreAnimalLabel.setText("Nombre animal:");
+
+        alimentacionLabel.setText("Hora, fecha y racion:");
+
+        comidaLabel.setText("Nombre comida:");
+
+        botonAgregar.setText("+");
+        botonAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,40 +222,75 @@ public class InsertEvento extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(nombre_animal)
-                    .addComponent(nombre_animal1))
-                .addGap(61, 61, 61)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(okButton)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cancelButton))
-                    .addComponent(txtIDAnimalAlimentado, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                    .addComponent(comboIDAlimentacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(comboIDComida, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(42, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(campoComidas)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(nombre_animal)
+                                    .addComponent(nombre_animal1))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(61, 61, 61)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(comboIDAlimentacion, 0, 225, Short.MAX_VALUE)
+                                            .addComponent(comboIDAnimal, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                                        .addComponent(comboIDComida, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(botonAgregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comidaLabel))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(51, 51, 51)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nombreAnimalLabel)
+                                    .addComponent(alimentacionLabel))))))
+                .addContainerGap(240, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIDAnimalAlimentado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombre_animal))
-                .addGap(21, 21, 21)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(comboIDAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nombre_animal1)
-                    .addComponent(comboIDComida, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nombre_animal)
+                    .addComponent(comboIDAnimal, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombreAnimalLabel))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(comboIDAlimentacion, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(alimentacionLabel)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(nombre_animal1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(comidaLabel)
+                                .addComponent(botonAgregar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(comboIDComida, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
+                .addComponent(campoComidas, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(okButton)
                     .addComponent(cancelButton))
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         pack();
@@ -207,18 +300,17 @@ public class InsertEvento extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_textNum1ActionPerformed
 
-    private void txtIDAnimalAlimentadoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtIDAnimalAlimentadoFocusLost
-        String text = txtIDAnimalAlimentado.getText().trim();
-        if (text.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Introducir el nombre del café.");
-        }
-    }//GEN-LAST:event_txtIDAnimalAlimentadoFocusLost
-
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
-        Integer id_animal = Integer.parseInt(txtIDAnimalAlimentado.getText());
-        Integer id_alimentacion = Integer.parseInt(comboIDAlimentacion.getSelectedItem().toString());
-        Integer id_comida = Integer.parseInt(comboIDComida.getSelectedItem().toString());
+    if (!comidas.isEmpty()){
+    for (int i=0; i < comidas.size(); i++) {
+    
 
+        Integer id_animal = Integer.parseInt(comboIDAnimal.getSelectedItem().toString());
+        Integer id_alimentacion = Integer.parseInt(comboIDAlimentacion.getSelectedItem().toString());
+        Integer id_comida = Integer.parseInt(comidas.get(i));
+        
+        
+        if(i==0){
         StringBuilder sql
         = new StringBuilder("INSERT INTO recibe (id_animal,id_alimentacion) VALUES (\'");
         sql.append(id_animal.intValue());
@@ -228,10 +320,17 @@ public class InsertEvento extends javax.swing.JDialog {
         sql.append("\')");
         sql.append(";");
         System.out.println( sql.toString() );
+                try {
+            db.update( sql.toString() );
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, "Error al insertar recibe.");
+            System.out.println( ex.getMessage() );
+        }
+        }
         
         StringBuilder sql1
         = new StringBuilder("INSERT INTO utiliza (id_comida,id_alimentacion) VALUES (\'");
-        sql1.append(id_comida.intValue());
+        sql1.append(id_comida);
         sql1.append("\',");
         sql1.append("\'");
         sql1.append( id_alimentacion.intValue());
@@ -240,25 +339,97 @@ public class InsertEvento extends javax.swing.JDialog {
         System.out.println( sql1.toString() );
 
         try {
-            db.update( sql.toString() );
             db.update( sql1.toString() );
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this, "Error al insertar recibe.");
             System.out.println( ex.getMessage() );
         }
         setVisible(false);
+        }
+ }
     }//GEN-LAST:event_okButtonActionPerformed
 
     private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
         setVisible(false);
     }//GEN-LAST:event_cancelButtonActionPerformed
 
+    private void comboIDAnimalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboIDAnimalActionPerformed
+        String id_animal = comboIDAnimal.getSelectedItem().toString();
+        String nombre_animal="";
+        try {
+            ResultSet rs = db.query("SELECT nombre_animal from animal WHERE id_animal = " + id_animal);
+            rs.next();
+            nombre_animal = rs.getString(1);
+            System.out.println(nombre_animal);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        nombreAnimalLabel.setText("Nombre animal: " + nombre_animal);
+    }//GEN-LAST:event_comboIDAnimalActionPerformed
+
+    private void comboIDAlimentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboIDAlimentacionActionPerformed
+        String id_alimentacion = comboIDAlimentacion.getSelectedItem().toString();
+        String hora_alimentacion="";
+        
+        try {
+            ResultSet rs = db.query("SELECT hora_alimentacion from alimentacion WHERE id_alimentacion =" + id_alimentacion);
+            rs.next();
+            hora_alimentacion = rs.getString(1);
+            System.out.println(hora_alimentacion);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        alimentacionLabel.setText("Hora alimentacion: " + hora_alimentacion);
+    }//GEN-LAST:event_comboIDAlimentacionActionPerformed
+
+    private void campoComidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoComidasActionPerformed
+
+    }//GEN-LAST:event_campoComidasActionPerformed
+
+    private void comboIDComidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboIDComidaActionPerformed
+        String id_comida = comboIDComida.getSelectedItem().toString();
+        String nombre_comida="";
+        
+        try {
+            ResultSet rs = db.query("SELECT nombre_comida from comida WHERE id_comida =" + id_comida);
+            rs.next();
+            nombre_comida = rs.getString(1);
+            System.out.println(nombre_comida);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(InsertAnimal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        comidaLabel.setText(nombre_comida);
+    }//GEN-LAST:event_comboIDComidaActionPerformed
+
+    private void botonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarActionPerformed
+
+        comidas.add(comboIDComida.getSelectedItem().toString());
+        String textoActual = campoComidas.getText();
+
+        if (c > 0) {
+            campoComidas.setText(textoActual + ", " + comidaLabel.getText());
+
+        } else {
+            campoComidas.setText(comidaLabel.getText());
+        }
+        c++;
+    }//GEN-LAST:event_botonAgregarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alimentacionLabel;
+    private javax.swing.JButton botonAgregar;
+    private javax.swing.JTextField campoComidas;
     private javax.swing.JButton cancelButton;
     private javax.swing.JComboBox<String> comboIDAlimentacion;
+    private javax.swing.JComboBox<String> comboIDAnimal;
     private javax.swing.JComboBox<String> comboIDComida;
+    private javax.swing.JLabel comidaLabel;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JMenuItem jMenuItem1;
@@ -266,11 +437,11 @@ public class InsertEvento extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel nombreAnimalLabel;
     private javax.swing.JLabel nombre_animal;
     private javax.swing.JLabel nombre_animal1;
     private javax.swing.JButton okButton;
     private javax.swing.JTextField textNum1;
-    private javax.swing.JTextField txtIDAnimalAlimentado;
     // End of variables declaration//GEN-END:variables
 
 }
