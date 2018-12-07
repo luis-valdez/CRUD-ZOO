@@ -8,10 +8,7 @@ package feedingzoo;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-/**
- *
- * @author Maestro
- */
+
 public class MainApp extends javax.swing.JFrame {
 
     //private final String USER = "usr210215739";

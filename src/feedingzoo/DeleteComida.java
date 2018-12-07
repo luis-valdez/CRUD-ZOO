@@ -56,7 +56,7 @@ public class DeleteComida extends javax.swing.JDialog {
     }
 
     private void buildCombo() {
-        final String sql = "SELECT id_comida FROM comida ORDER BY id_comida";
+        final String sql = "SELECT nombre_comida FROM comida ORDER BY nombre_comida";
         ResultSet rs = null;
         try {
             // Enviar consulta a la base de datos
@@ -163,7 +163,7 @@ public class DeleteComida extends javax.swing.JDialog {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         try {
             String name = comboName.getSelectedItem().toString();
-            String sql = String.format("DELETE FROM comida WHERE id_comida = \'%s\'",name);
+            String sql = String.format("DELETE FROM comida WHERE nombre_comida = \'%s\'",name);
             System.out.println(sql);
             db.update(sql);           
             

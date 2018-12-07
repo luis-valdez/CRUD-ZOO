@@ -56,7 +56,7 @@ public class DeleteStaff extends javax.swing.JDialog {
     }
 
     private void buildCombo() {
-        final String sql = "SELECT id_staff FROM staff ORDER BY id_staff";
+        final String sql = "SELECT nombre_staff FROM staff ORDER BY nombre_staff";
         ResultSet rs = null;
         try {
             // Enviar consulta a la base de datos
@@ -163,7 +163,7 @@ public class DeleteStaff extends javax.swing.JDialog {
     private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
         try {
             String name = comboName.getSelectedItem().toString();
-            String sql = String.format("DELETE FROM staff WHERE id_staff = \'%s\'",name);
+            String sql = String.format("DELETE FROM staff WHERE nombre_staff = \'%s\'",name);
             System.out.println(sql);
             db.update(sql);           
             
